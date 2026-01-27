@@ -31,3 +31,7 @@ print(count)
 # input 말고 import sys.stdin.readline()으로 입력받을것 input으로 하면 시간초과뜸.
 
 # sys.setrecursionlimit(10000) 파이썬은 자체 재귀함수를 돌리면 수가 제한이 있기때문에 직접 늘려줘야한다.
+'''
+import sys
+input = sys.stdin.readline
+'''
