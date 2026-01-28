@@ -24,6 +24,7 @@ O(V + E) = 5V. -> 5 x 250000 = 1250000 < 2억
 """
 
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 
@@ -38,9 +39,9 @@ dy = [1, 0, -1, 0]
 
 def BFS(y, x):
     rs = 1
-    q = [(y, x)]
+    q = deque([(y, x)])
     while q:
-        ey, ex = q.pop()
+        ey, ex = q.popleft()
         for k in range(4):
             ny = ey + dy[k]
             nx = ex + dx[k]
