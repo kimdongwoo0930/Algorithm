@@ -79,3 +79,42 @@ deque()        # BFS, 양방향 큐
 
 - Counter는 카운팅 정렬 및 빈도 문제에서 매우 효율적
 - deque는 리스트보다 삽입/삭제 성능이 안정적
+
+---
+
+### 🧩 lambda — 정렬 기준을 명확하게 표현하기
+
+정렬 조건이 단순하지만
+**한 번만 사용하는 함수가 필요한 경우** lambda를 사용했다.
+
+```python
+words = sorted(words.items(), key=lambda x: x[1])
+```
+
+### 🔍 코드 설명
+
+```python
+words.items()
+```
+
+- (단어, 길이) 형태의 튜플 리스트
+
+- lambda x: x[1]
+
+- 튜플의 두 번째 값(단어 길이)을 기준으로 정렬
+
+튜플 형태를 정렬하기 위한 코드이다.
+
+### 🔄 lambda를 사용하지 않는 경우
+
+```python
+def get_length(x):
+    return x[1]
+
+words = sorted(words.items(), key=get_length)
+```
+
+기능은 동일하지만,
+한 번만 쓰는 함수라면 lambda가 더 간결하다.
+
+---
