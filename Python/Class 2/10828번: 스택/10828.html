@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="https://www.acmicpc.net"> <!-- base url 설정 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <title>스택</title>
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/css/problem-font.css?version=20230101">
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/unify/css/custom.css?version=20230101">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; margin: 0; }
+    h1, h2, h3 { margin-top: 30px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    
+        code { background-color: #2e2e2e; padding: 2px 4px; border-radius: 4px; }
+        pre {
+          background-color: #2e2e2e;
+          color: white;
+          font-size: 14px;
+        }
+      
+    .problem-section { margin-bottom: 30px; }
+    .problem-text p { margin: 0; }
+    .problem-text a { color: #007bff; }
+    .problem-io { margin-top: 20px; }
+    .problem-io h3 { font-size: 20px; }
+    .sample-container {
+      display: flex;
+      gap: 16px; /* 예제와 예제 사이의 간격 설정 (원하는 크기로 조정) */
+    }
+    .sample-box {
+      flex: 1; /* 박스가 꽉 차도록 설정 */
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function updateTheme() {
+      const theme = {"theme":2};
+      vscode.postMessage(theme);
+    }            
+    function getLocalResourceUri(resourcePath) {
+      const onDiskPath = vscode.Uri.file(path.join(context.extensionPath, resourcePath));
+      const srcUri = panel.webview.asWebviewUri(onDiskPath);
+      return srcUri;
+    }
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['$begin:math:text$','\$end:math:text$']]}
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <h1 style="display:inline">
+    스택
+  </h1>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <h3 style="display:inline">
+  </h3>
+  <br>
+  <table>
+    <thead><tr><th style="width:16%;">시간 제한</th><th style="width:16%;">메모리 제한</th><th style="width:17%;">제출</th><th style="width:17%;">정답</th><th style="width:17%;">맞힌 사람</th><th style="width:17%;">정답 비율</th></tr></thead><tbody><tr><td>0.5 초 (추가 시간 없음) </td><td>256 MB</td><td>317017</td><td>122411</td><td>88439</td><td>39.108%</td></tr></tbody>
+  </table>
+  <section id="description" class="problem-section">
+    <div class="headline">
+      <h2>문제</h2>
+    </div>
+    <div id="problem_description" class="problem-text">
+      
+<p>정수를 저장하는&nbsp;스택을 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.</p>
+
+<p>명령은 총 다섯 가지이다.</p>
+
+<ul>
+<li>push X: 정수 X를 스택에 넣는 연산이다.</li>
+<li>pop: 스택에서 가장 위에 있는&nbsp;정수를 빼고, 그 수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.</li>
+<li>size: 스택에 들어있는 정수의 개수를 출력한다.</li>
+<li>empty: 스택이 비어있으면 1, 아니면 0을 출력한다.</li>
+<li>top: 스택의 가장 위에 있는 정수를 출력한다.&nbsp;만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.</li>
+</ul>
+
+
+    </div>
+  </section>
+
+  <section id="input" class="problem-section">
+    <div class="headline">
+      <h2>입력</h2>
+    </div>
+    <div id="problem_input" class="problem-text">
+      
+<p>첫째 줄에 주어지는 명령의 수 N (1 ≤ N ≤ 10,000)이 주어진다.&nbsp;둘째 줄부터 N개의 줄에는 명령이 하나씩 주어진다. 주어지는 정수는 1보다 크거나 같고, 100,000보다 작거나 같다. 문제에 나와있지 않은 명령이 주어지는 경우는 없다.</p>
+
+
+    </div>
+  </section>
+
+  <section id="output" class="problem-section">
+    <div class="headline">
+      <h2>출력</h2>
+    </div>
+    <div id="problem_output" class="problem-text">
+      
+<p>출력해야하는 명령이 주어질 때마다, 한 줄에 하나씩 출력한다.</p>
+
+
+    </div>
+  </section>
+
+  <div id="limit" class="problem-section hidden"></div>
+
+  <section id="sample-IOs" class="problem-section">
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 1</h2>
+          <pre class="sampledata">14
+push 1
+push 2
+top
+size
+empty
+pop
+pop
+pop
+size
+empty
+pop
+push 3
+empty
+top
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 1</h2>
+          <pre class="sampledata">2
+2
+0
+2
+1
+-1
+0
+1
+-1
+0
+3
+</pre>
+        </div>
+      </div>
+      
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 2</h2>
+          <pre class="sampledata">7
+pop
+top
+push 123
+top
+pop
+top
+pop
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 2</h2>
+          <pre class="sampledata">-1
+-1
+123
+123
+-1
+-1
+</pre>
+        </div>
+      </div>
+      
+    
+  </section>
+
+  <div id="hint" class="problem-section hidden"></div>
+
+  
+    <section id="source" class="problem-section">
+      <div id="source" class="problem-text">
+        <div class="headline"><h2>출처</h2></div><ul><li>문제를 만든 사람:&nbsp;<a href="/user/baekjoon">baekjoon</a></li><li>데이터를 추가한 사람:&nbsp;<a href="/user/deunlee">deunlee</a>, <a href="/user/djm03178">djm03178</a></li></ul>
+      </div>
+    </section>
+</body>
+</html>

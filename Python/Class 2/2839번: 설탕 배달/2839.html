@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="https://www.acmicpc.net"> <!-- base url 설정 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <title>설탕 배달</title>
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/css/problem-font.css?version=20230101">
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/unify/css/custom.css?version=20230101">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; margin: 0; }
+    h1, h2, h3 { margin-top: 30px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    
+        code { background-color: #2e2e2e; padding: 2px 4px; border-radius: 4px; }
+        pre {
+          background-color: #2e2e2e;
+          color: white;
+          font-size: 14px;
+        }
+      
+    .problem-section { margin-bottom: 30px; }
+    .problem-text p { margin: 0; }
+    .problem-text a { color: #007bff; }
+    .problem-io { margin-top: 20px; }
+    .problem-io h3 { font-size: 20px; }
+    .sample-container {
+      display: flex;
+      gap: 16px; /* 예제와 예제 사이의 간격 설정 (원하는 크기로 조정) */
+    }
+    .sample-box {
+      flex: 1; /* 박스가 꽉 차도록 설정 */
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function updateTheme() {
+      const theme = {"theme":2};
+      vscode.postMessage(theme);
+    }            
+    function getLocalResourceUri(resourcePath) {
+      const onDiskPath = vscode.Uri.file(path.join(context.extensionPath, resourcePath));
+      const srcUri = panel.webview.asWebviewUri(onDiskPath);
+      return srcUri;
+    }
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['$begin:math:text$','\$end:math:text$']]}
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <h1 style="display:inline">
+    설탕 배달
+  </h1>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <h3 style="display:inline">
+  </h3>
+  <br>
+  <table>
+    <thead><tr><th style="width:16%;">시간 제한</th><th style="width:16%;">메모리 제한</th><th style="width:17%;">제출</th><th style="width:17%;">정답</th><th style="width:17%;">맞힌 사람</th><th style="width:17%;">정답 비율</th></tr></thead><tbody><tr><td>1 초 </td><td>128 MB</td><td>392307</td><td>155403</td><td>114462</td><td>38.826%</td></tr></tbody>
+  </table>
+  <section id="description" class="problem-section">
+    <div class="headline">
+      <h2>문제</h2>
+    </div>
+    <div id="problem_description" class="problem-text">
+      
+<p>상근이는 요즘 설탕공장에서 설탕을 배달하고 있다. 상근이는 지금 사탕가게에 설탕을 정확하게 N킬로그램을 배달해야 한다. 설탕공장에서 만드는 설탕은 봉지에 담겨져 있다. 봉지는 3킬로그램 봉지와 5킬로그램 봉지가 있다.</p>
+
+<p>상근이는 귀찮기 때문에, 최대한 적은 봉지를 들고 가려고 한다. 예를 들어, 18킬로그램 설탕을 배달해야 할 때, 3킬로그램 봉지 6개를 가져가도 되지만, 5킬로그램 3개와 3킬로그램 1개를 배달하면, 더 적은 개수의 봉지를 배달할 수 있다.</p>
+
+<p>상근이가 설탕을 정확하게 N킬로그램 배달해야 할 때, 봉지 몇 개를 가져가면 되는지 그 수를 구하는 프로그램을 작성하시오.</p>
+
+
+    </div>
+  </section>
+
+  <section id="input" class="problem-section">
+    <div class="headline">
+      <h2>입력</h2>
+    </div>
+    <div id="problem_input" class="problem-text">
+      
+<p>첫째 줄에 N이 주어진다. (3 ≤ N ≤ 5000)</p>
+
+
+    </div>
+  </section>
+
+  <section id="output" class="problem-section">
+    <div class="headline">
+      <h2>출력</h2>
+    </div>
+    <div id="problem_output" class="problem-text">
+      
+<p>상근이가 배달하는 봉지의 최소 개수를 출력한다. 만약, 정확하게 N킬로그램을 만들 수 없다면 -1을 출력한다.</p>
+
+
+    </div>
+  </section>
+
+  <div id="limit" class="problem-section hidden"></div>
+
+  <section id="sample-IOs" class="problem-section">
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 1</h2>
+          <pre class="sampledata">18
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 1</h2>
+          <pre class="sampledata">4
+</pre>
+        </div>
+      </div>
+      
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 2</h2>
+          <pre class="sampledata">4
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 2</h2>
+          <pre class="sampledata">-1
+</pre>
+        </div>
+      </div>
+      
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 3</h2>
+          <pre class="sampledata">6
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 3</h2>
+          <pre class="sampledata">2
+</pre>
+        </div>
+      </div>
+      
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 4</h2>
+          <pre class="sampledata">9
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 4</h2>
+          <pre class="sampledata">3
+</pre>
+        </div>
+      </div>
+      
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 5</h2>
+          <pre class="sampledata">11
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 5</h2>
+          <pre class="sampledata">3
+</pre>
+        </div>
+      </div>
+      
+    
+  </section>
+
+  <div id="hint" class="problem-section hidden"></div>
+
+  
+    <section id="source" class="problem-section">
+      <div id="source" class="problem-text">
+        <div class="headline"><h2>출처</h2></div><p><a href="/category/45">Contest</a>&nbsp;&gt;&nbsp;<a href="/category/17">Croatian Open Competition in Informatics</a>&nbsp;&gt;&nbsp;<a href="/category/20">COCI 2010/2011</a>&nbsp;&gt;&nbsp;<a href="/category/detail/81">Contest #7</a>&nbsp;1번</p><ul><li>문제를 번역한 사람:&nbsp;<a href="/user/baekjoon">baekjoon</a></li><li>데이터를 추가한 사람:&nbsp;<a href="/user/hyunynim">hyunynim</a>, <a href="/user/jh05013">jh05013</a></li></ul>
+      </div>
+    </section>
+</body>
+</html>

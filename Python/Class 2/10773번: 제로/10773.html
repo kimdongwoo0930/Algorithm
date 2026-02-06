@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="https://www.acmicpc.net"> <!-- base url 설정 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <title>제로</title>
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/css/problem-font.css?version=20230101">
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/unify/css/custom.css?version=20230101">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; margin: 0; }
+    h1, h2, h3 { margin-top: 30px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    
+        code { background-color: #2e2e2e; padding: 2px 4px; border-radius: 4px; }
+        pre {
+          background-color: #2e2e2e;
+          color: white;
+          font-size: 14px;
+        }
+      
+    .problem-section { margin-bottom: 30px; }
+    .problem-text p { margin: 0; }
+    .problem-text a { color: #007bff; }
+    .problem-io { margin-top: 20px; }
+    .problem-io h3 { font-size: 20px; }
+    .sample-container {
+      display: flex;
+      gap: 16px; /* 예제와 예제 사이의 간격 설정 (원하는 크기로 조정) */
+    }
+    .sample-box {
+      flex: 1; /* 박스가 꽉 차도록 설정 */
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function updateTheme() {
+      const theme = {"theme":2};
+      vscode.postMessage(theme);
+    }            
+    function getLocalResourceUri(resourcePath) {
+      const onDiskPath = vscode.Uri.file(path.join(context.extensionPath, resourcePath));
+      const srcUri = panel.webview.asWebviewUri(onDiskPath);
+      return srcUri;
+    }
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['$begin:math:text$','\$end:math:text$']]}
+    });
+  </script>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <h1 style="display:inline">
+    제로
+  </h1>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <h3 style="display:inline">
+  </h3>
+  <br>
+  <table>
+    <thead><tr><th style="width:16%;">시간 제한</th><th style="width:16%;">메모리 제한</th><th style="width:17%;">제출</th><th style="width:17%;">정답</th><th style="width:17%;">맞힌 사람</th><th style="width:17%;">정답 비율</th></tr></thead><tbody><tr><td>1 초 </td><td>256 MB</td><td>130885</td><td>90091</td><td>72379</td><td>68.773%</td></tr></tbody>
+  </table>
+  <section id="description" class="problem-section">
+    <div class="headline">
+      <h2>문제</h2>
+    </div>
+    <div id="problem_description" class="problem-text">
+      
+<p>나코더 기장 재민이는 동아리 회식을 준비하기 위해서 장부를 관리하는 중이다.</p>
+
+<p>재현이는 재민이를 도와서 돈을 관리하는 중인데, 애석하게도 항상 정신없는 재현이는 돈을 실수로 잘못 부르는 사고를 치기 일쑤였다.</p>
+
+<p>재현이는 잘못된 수를 부를 때마다 0을 외쳐서, 가장 최근에 재민이가 쓴 수를 지우게 시킨다.</p>
+
+<p>재민이는 이렇게 모든 수를 받아 적은 후 그 수의 합을 알고 싶어 한다. 재민이를 도와주자!</p>
+
+
+    </div>
+  </section>
+
+  <section id="input" class="problem-section">
+    <div class="headline">
+      <h2>입력</h2>
+    </div>
+    <div id="problem_input" class="problem-text">
+      
+<p>첫 번째 줄에 정수 K가 주어진다. (1 ≤ K ≤ 100,000)</p>
+
+<p>이후 K개의 줄에 정수가 1개씩 주어진다. 정수는 0에서 1,000,000 사이의 값을 가지며, 정수가 "0" 일 경우에는 가장 최근에 쓴 수를 지우고, 아닐 경우 해당 수를 쓴다.</p>
+
+<p>정수가 "0"일 경우에 지울 수 있는 수가 있음을 보장할 수 있다.</p>
+
+
+    </div>
+  </section>
+
+  <section id="output" class="problem-section">
+    <div class="headline">
+      <h2>출력</h2>
+    </div>
+    <div id="problem_output" class="problem-text">
+      
+<p>재민이가 최종적으로 적어 낸 수의 합을 출력한다. 최종적으로 적어낸 수의 합은 2<sup>31</sup>-1보다 작거나 같은 정수이다.</p>
+
+
+    </div>
+  </section>
+
+  <div id="limit" class="problem-section hidden"></div>
+
+  <section id="sample-IOs" class="problem-section">
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 1</h2>
+          <pre class="sampledata">4
+3
+0
+4
+0
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 1</h2>
+          <pre class="sampledata">0
+</pre>
+        </div>
+      </div>
+      
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 2</h2>
+          <pre class="sampledata">10
+1
+3
+5
+4
+0
+0
+7
+0
+0
+6
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 2</h2>
+          <pre class="sampledata">7
+</pre>
+        </div>
+      </div>
+      
+    
+  </section>
+
+  
+    <section id="hint" class="problem-section">
+      <div class="headline">
+        <h2>힌트</h2>
+      </div>
+      <div id="problem_hint" class="problem-text">
+        
+				<p>예제 2의 경우를 시뮬레이션 해보면,</p>
+
+<ul>
+	<li>[1]</li>
+	<li>[1,3]</li>
+	<li>[1,3,5]</li>
+	<li>[1,3,5,4]</li>
+	<li>[1,3,5] (0을 불렀기 때문에 최근의 수를 지운다)</li>
+	<li>[1,3] (0을 불렀기 때문에 그 다음 최근의 수를 지운다)</li>
+	<li>[1,3,7]</li>
+	<li>[1,3] (0을 불렀기 때문에 최근의 수를 지운다)</li>
+	<li>[1] (0을 불렀기 때문에 그 다음 최근의 수를 지운다)</li>
+	<li>[1,6]</li>
+</ul>
+
+<p>합은 7이다.</p>
+
+				
+      </div>
+    </section>
+    
+
+  
+    <section id="source" class="problem-section">
+      <div id="source" class="problem-text">
+        <div class="headline"><h2>출처</h2></div><p><a href="/category/2">Olympiad</a>&nbsp;&gt;&nbsp;<a href="/category/173">Canadian Computing Competition &amp; Olympiad</a>&nbsp;&gt;&nbsp;<a href="/category/315">2015</a>&nbsp;&gt;&nbsp;<a href="/category/detail/1345">CCC 2015 Senior Division</a>&nbsp;1번</p><ul><li>문제를 번역한 사람:&nbsp;<a href="/user/koosaga">koosaga</a></li><li>문제의 오타를 찾은 사람:&nbsp;<a href="/user/busyhuman">busyhuman</a></li></ul>
+      </div>
+    </section>
+</body>
+</html>

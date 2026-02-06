@@ -19,7 +19,7 @@ N = input()
 List = set(map(int, input().split()))
 M = input()
 B = map(int, input().split())
-ㅇ
+
 for i in B:
     if i in List:
         out(str(1) + "\n")
