@@ -1,120 +1,33 @@
-# 🚀 알고리즘 학습 로그 (Python)
+# 📚 Algorithm Study Log
 
-> 단순히 문제를 푸는 것이 아니라
-> 더 빠르고, 더 깔끔한 해결 방법을 기록합니다.
-
-이 저장소는 알고리즘 문제 풀이 과정에서
-
-새롭게 알게 된 Python 표준 모듈, 최적화 기법, 문제 해결 사고 방식을 정리한 공간입니다.
+> 단순히 문제를 푸는 것이 아니라,
+> 더 빠르고 더 깔끔한 해결 방법을 기록합니다.
 
 ---
 
-## 📚 학습한 Python 모듈 정리
+## 🗂️ 폴더 구조
 
-### ⚙️ sys — 빠른 입출력 처리
-
-대량의 입력이 주어지는 환경에서
-**시간 초과를 방지하기 위해 필수적**으로 사용했습니다.
-
-```python
-import sys
-input = sys.stdin.readline
 ```
-
-- `input()`보다 `sys.stdin.readline()`이 더 빠르다.
-- BOJ 환경에서 성능 차이가 크다.
-
-반복적인 출력을 할경우 `print()`보다 `sys.stdout.write()`를 사용하는게 좋다.
-
-```python
-out = sys.stdout.write
-out(str(result) + '\n')
+Algorithm/
+├── Python/   # BOJ 알고리즘 풀이 및 Python 모듈 학습 기록
+├── Java/     # Java 알고리즘 풀이
+└── SQL/      # MySQL 기반 SQL 학습 및 쿼리 정리
 ```
 
 ---
 
-### 🧮 math — 수학적 사고 단순화
+## 🛠️ 개발 환경
 
-반복문을 줄이고
-**수식 기반으로 문제를 해결**하기 위해 사용했습니다.
-
-```python
-import math
-```
-
-자주 사용하는 함수
-
-```python
-math.gcd(a, b)     # 최대공약수
-math.lcm(a, b)     # 최소공배수
-math.sqrt(n)       # 제곱근
-math.factorial(n)  # 팩토리얼
-```
-
-#### ✔ 배운 점
-
-- gcd를 사용하면 유클리드 호제법을 직접 구현할 필요가 없다
-- 소수 판별은 sqrt(n)까지만 확인하면 충분하다
-- 수학 라이브러리를 활용하면 코드가 간결해지고 안정성이 높아진다
+- **Python / Java**: [BOJ VS Code Extension](https://github.com/kimdongwoo0930/BOJ-Extenstion-for-VSCode) 활용하여 풀이
+  - ※ HTML 파일은 Extension 사용으로 인해 자동 생성된 파일입니다.
+- **SQL**: VSCode + Docker + MySQL 환경에서 직접 실습
 
 ---
 
-### 🧺 collections — 문제에 맞는 자료구조
+## 📂 언어별 상세 내용
 
-기본 자료구조 대신
-**문제 성격에 맞는 자료구조를 선택해 성능**을 개선했습니다.
-
-```python
-from collections import Counter, deque
-```
-
-사용하는 함수
-
-```python
-Counter(arr)   # 빈도수 계산
-deque()        # BFS, 양방향 큐
-```
-
-#### ✔ 배운 점
-
-- Counter는 카운팅 정렬 및 빈도 문제에서 매우 효율적
-- deque는 리스트보다 삽입/삭제 성능이 안정적
-
----
-
-### 🧩 lambda — 정렬 기준을 명확하게 표현하기
-
-정렬 조건이 단순하지만
-**한 번만 사용하는 함수가 필요한 경우** lambda를 사용했다.
-
-```python
-words = sorted(words.items(), key=lambda x: x[1])
-```
-
-### 🔍 코드 설명
-
-```python
-words.items()
-```
-
-- (단어, 길이) 형태의 튜플 리스트
-
-- lambda x: x[1]
-
-- 튜플의 두 번째 값(단어 길이)을 기준으로 정렬
-
-튜플 형태를 정렬하기 위한 코드이다.
-
-### 🔄 lambda를 사용하지 않는 경우
-
-```python
-def get_length(x):
-    return x[1]
-
-words = sorted(words.items(), key=get_length)
-```
-
-기능은 동일하지만,
-한 번만 쓰는 함수라면 lambda가 더 간결하다.
-
----
+| 폴더               | 내용                                                        |
+| ------------------ | ----------------------------------------------------------- |
+| [Python](./Python) | BOJ 문제 풀이 + sys, math, collections, lambda 등 모듈 학습 |
+| [Java](./Java)     | BOJ 문제 풀이                                               |
+| [SQL](./SQL)       | SELECT 기초부터 집계 함수까지 MySQL 실습                    |
