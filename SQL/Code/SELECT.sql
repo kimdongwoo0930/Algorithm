@@ -40,3 +40,24 @@ WHERE email IS NULL
 
 SELECT name FROM members
 WHERE email IS NOT NULL
+
+
+SELECT name, age FROM members ORDER BY age ASC
+
+SELECT name, age FROM members ORDER BY age DESC
+
+SELECT name, age FROM members ORDER BY age ASC LIMIT 5 OFFSET 5
+
+
+# 중복제거
+SELECT DISTINCT name, age FROM members
+
+
+# SQL 순서
+
+-- 1. FROM
+-- 2. WHERE
+-- 3. SELECT
+-- 4. ORDER BY
+-- 5. LIMIT
+-- 어느 테이블에서  어느조건으로 어느 컬럼을 어떤 순서로 몇개

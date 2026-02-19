@@ -133,3 +133,5 @@ WHERE email IS NULL  -- ✅
 WHERE name = 김동우   -- ❌ 에러
 WHERE name = '김동우' -- ✅
 ```
+
+
