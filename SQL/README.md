@@ -134,4 +134,140 @@ WHERE name = 김동우   -- ❌ 에러
 WHERE name = '김동우' -- ✅
 ```
 
+---
+
+### 6️⃣ GROUP BY & 집계 함수 — 그룹화 및 통계
+
+데이터를 그룹으로 묶어서 통계를 내는 핵심 기능.
+
+```sql
+-- 집계 함수 기본
+SELECT COUNT(*) FROM orders;              -- 전체 개수
+SELECT COUNT(DISTINCT member_id) FROM orders;  -- 중복 제거 개수
+SELECT SUM(price) FROM orders;            -- 합계
+SELECT AVG(price) FROM orders;            -- 평균
+SELECT MAX(price) FROM orders;            -- 최댓값
+SELECT MIN(price) FROM orders;            -- 최솟값
+
+-- GROUP BY로 그룹별 통계
+SELECT member_id, COUNT(*) AS 주문횟수
+FROM orders
+GROUP BY member_id;
+
+-- 여러 컬럼으로 그룹화
+SELECT member_id, product_name, COUNT(*) AS 주문횟수
+FROM orders
+GROUP BY member_id, product_name;
+
+-- 집계 함수와 정렬 조합
+SELECT member_id, SUM(price) AS 총구매액
+FROM orders
+GROUP BY member_id
+ORDER BY 총구매액 DESC;
+```
+
+#### ✔ 배운 점
+
+- GROUP BY에 명시한 컬럼만 SELECT 가능 (+ 집계 함수)
+- COUNT(*)는 NULL 포함, COUNT(컬럼)은 NULL 제외
+- GROUP BY는 WHERE 이후, ORDER BY 이전에 실행됨
+
+---
+
+### 7️⃣ HAVING — 그룹 조건 필터링
+
+WHERE는 개별 행 필터링, HAVING은 그룹 필터링.
+
+```sql
+-- 주문 2회 이상인 회원만
+SELECT member_id, COUNT(*) AS 주문횟수
+FROM orders
+GROUP BY member_id
+HAVING COUNT(*) >= 2;
+
+-- WHERE + HAVING 조합
+SELECT member_id, AVG(price) AS 평균구매액
+FROM orders
+WHERE price >= 1000        -- 개별 주문이 1000원 이상인 것만
+GROUP BY member_id
+HAVING AVG(price) >= 5000; -- 평균이 5000원 이상인 회원만
+```
+
+#### ✔ 배운 점
+
+- WHERE: 그룹화 전 필터링 (개별 행)
+- HAVING: 그룹화 후 필터링 (그룹 단위)
+- 실행 순서: WHERE → GROUP BY → HAVING → ORDER BY
+
+---
+
+### 8️⃣ JOIN — 테이블 결합
+
+여러 테이블의 데이터를 연결해서 조회하는 핵심 기능.
+
+#### INNER JOIN — 교집합 (양쪽 모두 있는 데이터만)
+
+```sql
+-- 기본 INNER JOIN
+SELECT m.name, o.product_name, o.price
+FROM members m
+INNER JOIN orders o ON m.id = o.member_id;
+
+-- INNER는 생략 가능
+SELECT m.name, o.product_name
+FROM members m
+JOIN orders o ON m.id = o.member_id;
+
+-- 여러 조건 결합
+SELECT m.name, o.product_name
+FROM members m
+JOIN orders o ON m.id = o.member_id
+WHERE o.price >= 10000;
+```
+
+#### LEFT JOIN — 왼쪽 테이블 기준 (왼쪽은 전부, 오른쪽은 매칭되는 것만)
+
+```sql
+-- 주문 안 한 회원도 포함
+SELECT m.name, o.product_name
+FROM members m
+LEFT JOIN orders o ON m.id = o.member_id;
+
+-- NULL 체크로 "주문 안 한 회원" 찾기
+SELECT m.name
+FROM members m
+LEFT JOIN orders o ON m.id = o.member_id
+WHERE o.order_id IS NULL;
+```
+
+#### RIGHT JOIN — 오른쪽 테이블 기준
+
+```sql
+-- LEFT JOIN을 뒤집은 것과 같음 (잘 안 씀)
+SELECT m.name, o.product_name
+FROM members m
+RIGHT JOIN orders o ON m.id = o.member_id;
+```
+
+#### 여러 테이블 JOIN
+
+```sql
+-- 3개 테이블 결합 (예시)
+SELECT m.name, o.product_name, c.category_name
+FROM members m
+JOIN orders o ON m.id = o.member_id
+JOIN categories c ON o.category_id = c.category_id;
+```
+
+#### ✔ 배운 점
+
+- **INNER JOIN**: 양쪽 테이블에 모두 있는 데이터만 (교집합)
+- **LEFT JOIN**: 왼쪽 테이블은 전부 + 오른쪽은 매칭되는 것만
+- **RIGHT JOIN**: LEFT JOIN을 반대로 (실무에선 LEFT로 바꿔 씀)
+- JOIN 조건은 `ON` 키워드로 명시
+- 테이블 별칭(alias) 사용: `members m`, `orders o`
+- LEFT JOIN + `WHERE xxx IS NULL` = "매칭 안 되는 데이터 찾기"
+
+---
+
 

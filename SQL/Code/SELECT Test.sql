@@ -139,3 +139,4 @@ SELECT product_name FROM orders WHERE product_name IN ('웹캠', '마이크', '�
 
 
 SELECT * FROM members WHERE age BETWEEN 25 AND 30 AND name LIKE "%우%" ORDER BY age ASC
+
