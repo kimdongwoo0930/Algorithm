@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="https://www.acmicpc.net">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://ddo7jzca0m2vt.cloudfront.net;">
+  <title>노솔브 방지문제야!!</title>
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/css/problem-font.css?version=20230101">
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/unify/css/custom.css?version=20230101">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; margin: 0; }
+    h1, h2, h3 { margin-top: 30px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    
+        code { background-color: #2e2e2e; padding: 2px 4px; border-radius: 4px; }
+        pre {
+          background-color: #2e2e2e;
+          color: white;
+          font-size: 14px;
+        }
+      
+    table {
+      border-collapse: collapse;
+      margin: 20px 0;
+      width: 100%;
+    }
+    table td, table th {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    .problem-section { margin-bottom: 30px; }
+    .problem-text p { margin: 0; }
+    .problem-text a { color: #007bff; }
+    .problem-io { margin-top: 20px; }
+    .problem-io h3 { font-size: 20px; }
+    .sample-container {
+      display: flex;
+      gap: 16px;
+    }
+    .sample-box {
+      flex: 1;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <h1 style="display:inline">
+    노솔브 방지문제야!!
+  </h1>
+  <br>
+  <table class="table" id="problem-info"><thead><tr><th style="width:16%;">시간 제한</th><th style="width:16%;">메모리 제한</th><th style="width:17%;">제출</th><th style="width:17%;">정답</th><th style="width:17%;">맞힌 사람</th><th style="width:17%;">정답 비율</th></tr></thead><tbody><tr><td>2 초 </td><td>512 MB</td><td>5239</td><td>2652</td><td>2047</td><td>49.684%</td></tr></tbody></table>
+  <section id="description" class="problem-section">
+    <div class="headline">
+      <h2>문제</h2>
+    </div>
+    <div id="problem_description" class="problem-text">
+      
+<p>여러분은 Q개의 쿼리를 수행해야 합니다. 수행해야 하는 쿼리는 다음과 같습니다.</p>
+
+<p>어떤 수 a를 2의 거듭제곱 꼴로 나타낼 수 있는가?</p>
+
+
+    </div>
+  </section>
+
+  <section id="input" class="problem-section">
+    <div class="headline">
+      <h2>입력</h2>
+    </div>
+    <div id="problem_input" class="problem-text">
+      
+<p>첫 줄에 Q가 주어집니다. (1 ≤ Q ≤ 10<sup>6</sup>)</p>
+
+<p>두 번째 줄부터 Q+1번째 줄까지 a가 주어집니다. a는 1이상 2<sup>31</sup>-1이하 자연수입니다.</p>
+
+
+    </div>
+  </section>
+
+  <section id="output" class="problem-section">
+    <div class="headline">
+      <h2>출력</h2>
+    </div>
+    <div id="problem_output" class="problem-text">
+      
+<p>각 쿼리마다, 답이 Yes이면 1을, 그렇지 않으면 0을 출력합니다.</p>
+
+
+    </div>
+  </section>
+
+  <div id="limit" class="problem-section hidden"></div>
+
+  <section id="sample-IOs" class="problem-section">
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 1</h2>
+          <pre class="sampledata">10
+1
+2
+7
+4
+14
+32
+33
+34
+35
+36
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 1</h2>
+          <pre class="sampledata">1
+1
+0
+1
+0
+1
+0
+0
+0
+0
+</pre>
+        </div>
+      </div>
+      
+    
+  </section>
+
+  
+    <section id="hint" class="problem-section">
+      <div class="headline">
+        <h2>힌트</h2>
+      </div>
+      <div id="problem_hint" class="problem-text">
+        
+				<p>어떤 수 a가 2의 거듭제곱꼴로 나타내어진다고 해 봅시다. 그렇다면, a = 2<sup>n</sup> (단 n ≥ 0인 정수) 를 만족할 겁니다. 보통, 각 비트별로 검사를 하면서, 켜져 있는 비트의 개수를 알아내는 것도 좋은 방법입니다. 이때에는, 많아봤자 32번 정도 연산을 수행하고, 전체 쿼리가 Q개 있다면, 총 시간 복잡도는 O(32Q)가 됩니다.</p>
+
+<p>그런데, 더 좋은 방법이 없을까요? x (x ≥ 0)를 2진법으로 표현해 볼건데요. x가 홀수인 경우와 짝수인 경우로 나눠 봅시다.</p>
+
+<p style="text-align: center;">...01</p>
+
+<p>이때 -x는 어떻게 표현이 될까요?</p>
+
+<p style="text-align: center;">...11</p>
+
+<p>따라서, x&amp;(-x)를 하면 1이 나옵니다. x가 짝수라면 어떨까요?</p>
+
+<p style="text-align: center;">...10…0</p>
+
+<p>으로 표현이 될 겁니다. 이때 -x는 어떻게 표현이 될까요? 일단 bit 반전 먼저 시켜봅시다.</p>
+
+<p style="text-align: center;">...01...1</p>
+
+<p>이 되고, 여기에 1을 더한 것이 2의 보수 표현법입니다. 따라서 -x는</p>
+
+<p style="text-align: center;">...10...0</p>
+
+<p>으로 표현됩니다. 따라서 x&amp;(-x)는 1이 있는 x의 최하위 bit와 관련이 있음을 알 수 있습니다. 예제를 하나 들어봅시다. x=6인 경우 x&amp;(-x)의 값은 어떻게 나올까요?</p>
+
+<p style="text-align: center;">6 = ...0110</p>
+
+<p style="text-align: center;">-6 = ...1010</p>
+
+<p>이므로 6&amp;(-6) = 2가 나옵니다.</p>
+
+<p>그러면, a가 2<sup>i</sup>꼴로 나타내어진다면, 어떤 성질이 있는지를 관찰해 봅시다.</p>
+
+<p style="text-align: center;">a = 0...010...0</p>
+
+<p style="text-align: center;">-a = 1...110...0</p>
+
+<p>따라서 (a&amp;(-a)) == a라면 2의 거듭제곱이고, 그렇지 않으면 2의 거듭제곱이 아닙니다.</p>
+
+				
+      </div>
+    </section>
+    
+
+  
+    <section id="source" class="problem-section">
+      <div id="source" class="problem-text">
+        <div class="headline"><h2>출처</h2></div><p><a href="/category/97">School</a>&nbsp;&gt;&nbsp;<a href="/category/394">선린인터넷고등학교</a>&nbsp;&gt;&nbsp;<a href="/category/1119">천하제일 코딩대회</a>&nbsp;&gt;&nbsp;<a href="/category/detail/1892">제2회 천하제일 코딩대회</a>&nbsp;B번</p><ul><li>문제를 만든 사람:&nbsp;<a href="/user/chogahui05">chogahui05</a></li></ul>
+      </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="https://www.acmicpc.net">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://ddo7jzca0m2vt.cloudfront.net;">
+  <title>서든어택 3</title>
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/css/problem-font.css?version=20230101">
+  <link rel="stylesheet" href="https://ddo7jzca0m2vt.cloudfront.net/unify/css/custom.css?version=20230101">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; margin: 0; }
+    h1, h2, h3 { margin-top: 30px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 20px; }
+    
+        code { background-color: #2e2e2e; padding: 2px 4px; border-radius: 4px; }
+        pre {
+          background-color: #2e2e2e;
+          color: white;
+          font-size: 14px;
+        }
+      
+    table {
+      border-collapse: collapse;
+      margin: 20px 0;
+      width: 100%;
+    }
+    table td, table th {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    .problem-section { margin-bottom: 30px; }
+    .problem-text p { margin: 0; }
+    .problem-text a { color: #007bff; }
+    .problem-io { margin-top: 20px; }
+    .problem-io h3 { font-size: 20px; }
+    .sample-container {
+      display: flex;
+      gap: 16px;
+    }
+    .sample-box {
+      flex: 1;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <h1 style="display:inline">
+    서든어택 3
+  </h1>
+  <br>
+  <table class="table" id="problem-info"><thead><tr><th style="width:16%;">시간 제한</th><th style="width:16%;">메모리 제한</th><th style="width:17%;">제출</th><th style="width:17%;">정답</th><th style="width:17%;">맞힌 사람</th><th style="width:17%;">정답 비율</th></tr></thead><tbody><tr><td>2 초 (추가 시간 없음) </td><td>1024 MB</td><td>3562</td><td>1262</td><td>1027</td><td>34.956%</td></tr></tbody></table>
+  <section id="description" class="problem-section">
+    <div class="headline">
+      <h2>문제</h2>
+    </div>
+    <div id="problem_description" class="problem-text">
+      
+<blockquote>
+<p><em>지스타를 준비하기 시작한 작년 여름 이후 CBT와 런칭 준비를 한 오늘까지. 평일 저녁에 가족이 깨어 있는 것을 거의 본 적이 없다. </em></p>
+
+<p><em>이제 본격적인 정식오픈을 이틀 앞 둔 오늘. 바람소리와 스산한 빗소리가 사무실 창밖을 때린다.</em></p>
+
+<p><em>폭풍전야.</em></p>
+
+<p><em>블라인드에서 서든3을 비웃던, 지금도 비웃는 이들에게 반박글을 달지 않았다.&nbsp;</em></p>
+
+<p><em><strong>니들이 허접한지, 우리가 허접한지는 결과가 말해줄 것이다.</strong></em></p>
+</blockquote>
+
+<p>넥슨의 게임 개발자 준원이는 서든어택 3의 출시를 앞두고 게임 테스트를 하고 있다.</p>
+
+<p>맵에는 준원이를 포함해 $N$명의 플레이어가&nbsp;있다. 준원이의 공격력은 $A_1$이고, 나머지 사람들의 공격력은 $A_2, \cdots, A_N$이다.</p>
+
+<p>전투가 시작되면 누구나 누구든 공격할 수 있게 된다!&nbsp;죽은 사람은 공격하거나 공격받지 못하고,&nbsp;두 사람이 동시에 공격하는 일은 일어나지 않는다.</p>
+
+<p>공격력이 $X$인 플레이어 A가 공격력이 $Y$인 플레이어 B를 공격하면,</p>
+
+<ul>
+<li>$X &gt; Y$ 이면, B가 죽고 A의 공격력은 $X+Y$가 된다.</li>
+<li>$X &lt; Y$ 이면, A가 죽고 B의 공격력은 $X+Y$가 된다.</li>
+<li>$X = Y$ 이면, 아무 일도 일어나지 않는다.</li>
+</ul>
+
+<p>드디어 전투가 시작되었다! 준원이는 최후의 생존자가 될 수 있을까?</p>
+
+
+    </div>
+  </section>
+
+  <section id="input" class="problem-section">
+    <div class="headline">
+      <h2>입력</h2>
+    </div>
+    <div id="problem_input" class="problem-text">
+      
+<p>첫째 줄에는 준원이를 포함한 플레이어의 수 $N$이 주어진다.</p>
+
+<p>둘째 줄에는 각 플레이어의 공격력 $A_1, \cdots, A_N$이 차례대로 공백을 사이에 두고 주어진다.</p>
+
+
+    </div>
+  </section>
+
+  <section id="output" class="problem-section">
+    <div class="headline">
+      <h2>출력</h2>
+    </div>
+    <div id="problem_output" class="problem-text">
+      
+<p>좋은 전투 순서가 존재해서 준원이만 생존하고 나머지 플레이어가 모두 죽게 만들 수 있다면&nbsp;<code>Yes</code>를, 반대로 전투가 어떤 순서로&nbsp;이루어져도 준원이가&nbsp;절대 최후의 생존자가 될 수 없다면 <code>No</code>를 출력한다.</p>
+
+
+    </div>
+  </section>
+
+  
+    <section id="limit" class="problem-section">
+      <div class="headline">
+        <h2>제한</h2>
+      </div>
+      <div id="problem_limit" class="problem-text">
+        
+			<ul>
+	<li>$1 \le N \le 100\,000$</li>
+	<li>$1 \le A_i \le 1\,000\,000\,000$ ($1 \le i \le N$)</li>
+</ul>
+			
+      </div>
+    </section>
+    
+
+  <section id="sample-IOs" class="problem-section">
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 1</h2>
+          <pre class="sampledata">5
+2 1 2 3 4
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 1</h2>
+          <pre class="sampledata">Yes
+</pre>
+        </div>
+      </div>
+      
+    
+      <div class="sample-container">
+        <div class="sample-box">
+          <h2>예제 입력 2</h2>
+          <pre class="sampledata">5
+2 1 1 1 10
+</pre>
+        </div>
+        <div class="sample-box">
+          <h2>예제 출력 2</h2>
+          <pre class="sampledata">No
+</pre>
+        </div>
+      </div>
+      
+    
+  </section>
+
+  <div id="hint" class="problem-section hidden"></div>
+
+  
+    <section id="source" class="problem-section">
+      <div id="source" class="problem-text">
+        <div class="headline"><h2>출처</h2></div><p><a href="/category/97">School</a>&nbsp;&gt;&nbsp;<a href="/category/394">선린인터넷고등학교</a>&nbsp;&gt;&nbsp;<a href="/category/1120">선린 정보 알고리즘경시대회</a>&nbsp;&gt;&nbsp;<a href="/category/detail/2750">2021 선린 정보 알고리즘경시대회</a>&nbsp;A번</p><ul><li>문제를 만든 사람:&nbsp;<a href="/user/junie">junie</a></li><li>문제를 검수한 사람:&nbsp;<a href="/user/jhnah917">jhnah917</a>, <a href="/user/kyo20111">kyo20111</a></li></ul>
+      </div>
+    </section>
+</body>
+</html>
